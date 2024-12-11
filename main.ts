@@ -45,7 +45,7 @@ namespace D01 {
                 }
             }
         }
-        return myData
+        return 100
     }
 
     //% blockId="getDataRaw" block="the raw data of PM2.5(ug/m3)"
