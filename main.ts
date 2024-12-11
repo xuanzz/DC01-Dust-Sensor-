@@ -48,6 +48,33 @@ namespace D01 {
         return Math.round(myData)
     }
 
+    //% blockId="getDataRaw" block="the raw data of PM2.5(ug/m3)"
+    //% weight=90 blockGap=20 blockInlineInputs=true   
+    export function getDataRaw(): number {
+        let myData = 0
+        if (init) {
+            let myNum = 0
+            let myArr: number[] = [0, 0, 0]
+            let temp: Buffer
+            myNum = serial.readBuffer(1).getNumber(NumberFormat.UInt8BE, 0)
+            while (myData == 0) {
+                while (myNum != 165) {
+                    myNum = serial.readBuffer(1).getNumber(NumberFormat.UInt8BE, 0)
+                }
+                temp = serial.readBuffer(3)
+                for (let i = 0; i < 3; i++) {
+                    myArr[i] = temp.getNumber(NumberFormat.UInt8BE, i)
+                }
+                if (true) {
+                    myData = checkPM25(myArr)
+                }
+                else {
+                    myArr = [0, 0, 0]
+                }
+            }
+        }
+        return myData
+    }
 
     function checkPM25(tempArr: number[]): number {
         let o = (tempArr[0] * 128 + tempArr[1]);
