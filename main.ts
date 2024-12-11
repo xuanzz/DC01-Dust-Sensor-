@@ -37,7 +37,7 @@ namespace D01 {
                 for (let i = 0; i < 3; i++) {
                     myArr[i] = temp.getNumber(NumberFormat.UInt8BE, i)
                 }
-                if ((myArr[0]+myArr[1]+myArr[2]) == (0x7F & myArr[3])) {
+                if (true) {
                     myData = checkPM25(myArr)
                 }
                 else {
@@ -45,7 +45,7 @@ namespace D01 {
                 }
             }
         }
-        return Math.round(myData)
+        return myData
     }
 
     //% blockId="getDataRaw" block="the raw data of PM2.5(ug/m3)"
